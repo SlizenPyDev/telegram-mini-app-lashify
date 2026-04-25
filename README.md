@@ -25,7 +25,7 @@
 ### Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/name-ankayurt/lashify-booking-bot.git
+git clone https://github.com/SlizenPyDev/telegram-mini-app-lashify
 cd lashify-booking-bot
 Установите зависимости
 bash
