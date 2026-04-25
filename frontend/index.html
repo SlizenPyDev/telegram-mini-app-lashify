@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Lashify Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #custom-time-block {
+            display: none;
+            margin-top: 15px;
+        }
+        .time-slot.selected {
+            background: #ad1457;
+            color: white;
+        }
+        .day-slot.selected {
+            background: #ad1457;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="glass-card">
+            
+            <div id="step-1" class="step active">
+                <div class="header-group" style="width: 100%; text-align: center;">
+                    <h1 class="main-title">LASHIFY</h1>
+                    <p class="subtitle">PREMIUM EYELASH DESIGN</p>
+                </div>
+                <div class="bubbles-container">
+                    <div class="bubble">✨ Премиум материалы</div>
+                    <div class="bubble">💎 Носка до 6 недель</div>
+                    <div class="bubble">☁️ Гипоаллергенно</div>
+                </div>
+                <button class="btn-main" onclick="nextStep(2)">Выбрать услугу</button>
+                <div id="admin-login-node"></div>
+            </div>
+
+            <div id="step-2" class="step">
+                <h2 class="step-title">Services</h2>
+                <div class="services-list">
+                    <div class="service-item" onclick="selectService(this, 'Классика', 1200)">
+                        <span class="service-name">Классика</span>
+                        <span class="price-badge">1200₽</span>
+                    </div>
+                    <div class="service-item" onclick="selectService(this, '1.5 D Объем', 1300)">
+                        <span class="service-name">1.5 D Объем</span>
+                        <span class="price-badge">1300₽</span>
+                    </div>
+                    <div class="service-item" onclick="selectService(this, '2 D Объем', 1400)">
+                        <span class="service-name">2 D Объем</span>
+                        <span class="price-badge">1400₽</span>
+                    </div>
+                    <div class="service-item" onclick="selectService(this, '2.5 D Объем', 1600)">
+                        <span class="service-name">2.5 D Объем</span>
+                        <span class="price-badge">1600₽</span>
+                    </div>
+                    <div class="service-item" onclick="selectService(this, '3 D Объем', 1700)">
+                        <span class="service-name">3 D Объем</span>
+                        <span class="price-badge">1700₽</span>
+                    </div>
+                    <div class="service-item" onclick="selectService(this, '4 D Объем', 2000)">
+                        <span class="service-name">4 D Объем</span>
+                        <span class="price-badge">2000₽</span>
+                    </div>
+                    <div class="service-item" onclick="selectService(this, 'Снятие', 200)">
+                        <span class="service-name">Снятие</span>
+                        <span class="price-badge">200₽</span>
+                    </div>
+                </div>
+                <button class="btn-main" onclick="nextStep(3)" disabled>Далее</button>
+                <button class="btn-back-outline" onclick="nextStep(1)">Назад</button>
+            </div>
+
+            <div id="step-3" class="step">
+                <h2 class="step-title">Выберите дату</h2>
+                <div class="calendar-wrapper">
+                    <div class="calendar-header">
+                        <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
+                        <span id="monthDisplay" class="current-month"></span>
+                        <button class="nav-btn" onclick="changeMonth(1)">›</button>
+                    </div>
+                    <div class="weekdays">
+                        <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+                    </div>
+                    <div class="days-grid" id="daysGrid"></div>
+                </div>
+
+                <div class="time-section">
+                    <p class="section-label">Доступное время</p>
+                    <div class="time-grid">
+                        <div class="time-slot" onclick="selectTime(this)">10:00</div>
+                        <div class="time-slot selected" onclick="selectTime(this)">13:00</div>
+                        <div class="time-slot" onclick="selectTime(this)">16:00</div>
+                        <div class="time-slot" onclick="selectTime(this)">19:00</div>
+                    </div>
+                </div>
+
+                <div class="suggest-time-container">
+                    <button class="btn-suggest" onclick="openCustomTime()">
+                        <span>✨</span> Предложить своё время
+                    </button>
+                </div>
+
+                <div id="custom-time-block">
+                    <input type="time" id="custom-time-input" class="custom-time-input" placeholder="Например: 14:30">
+                </div>
+
+                <div class="footer-controls">
+                    <button class="btn-main" onclick="sendData()">Забронировать</button>
+                    <button class="btn-back-outline" onclick="nextStep(2)">Назад</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="step">
+                <div class="success-icon">
+                    <svg class="big-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2 class="main-title" style="font-size: 26px;">Готово!</h2>
+                <p class="subtitle" style="margin-bottom: 20px;">Запись отправлена мастеру на подтверждение.</p>
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <span></span> 
+                        <p>🌸Услуга: <strong id="final-service">Выбранная услуга</strong></p>
+                    </div>
+                    <div class="summary-item">
+                        <span></span> 
+                        <p>📅Дата и время:<strong id="final-date-time">Дата и время</strong></p>
+                    </div>
+                </div>
+                <div class="reminder-box">               
+                    <div class="reminder-header">
+                        <span>🔔</span> <span>Забота о вас</span>
+                    </div>
+                    <p class="reminder-text">
+                        Мы пришлем напоминание в Telegram за <b>24 часа</b> и за <b>2 часа</b> до начала процедуры.
+                    </p>
+                </div>
+
+                <button class="btn-main" onclick="tg.close()" style="margin-top: 20px;">Закрыть</button>
+            </div>
+
+            <div id="step-admin" class="step">
+                <h2 class="step-title">Admin Panel</h2>
+                <div id="admin-records" class="services-list">
+                    <p style="opacity: 0.5; text-align: center;">Загрузка записей...</p>
+                </div>
+                <button class="btn-main" onclick="nextStep(1)">Выход</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

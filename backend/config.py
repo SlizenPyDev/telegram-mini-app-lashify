@@ -1,0 +1,4 @@
+TOKEN = 'ВАШ_ТОКЕН_БОТА'
+BOT_TOKEN = TOKEN
+ADMIN_ID = '123456789'
+WEBAPP_URL = " ."
